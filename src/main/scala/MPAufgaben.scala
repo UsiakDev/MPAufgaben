@@ -29,7 +29,6 @@ object MPAufgaben {
 
   /**
    * Berechnet den Rest bei Division von x durch 2
-   *
    * @param x Eingabe
    * @return Rest
    */
@@ -45,7 +44,6 @@ object MPAufgaben {
 
   /**
    * Überprüft ob x über der Konstante liegt
-   *
    * @param x Int Eingabe die überprüft wird
    * @return Boolean
    */
@@ -53,7 +51,6 @@ object MPAufgaben {
 
   /**
    * Quadriert die Eingabe
-   *
    * @param x Int Eingabe- die zu quadrierende Zahl
    * @return Übergibt das Ergebnis als Int
    */
@@ -61,7 +58,6 @@ object MPAufgaben {
 
   /**
    * Gibt die Größte Zahl beider Eingaben als Int aus
-   *
    * @param x ,y Int - Beide Eingaben
    */
   def max(x: Int, y: Int): Int =
@@ -74,7 +70,6 @@ object MPAufgaben {
 
   /**
    * Gibt eine Zahl als absolute Zahl als Int wieder mit
-   *
    * @param x Int Eingabe
    */
   def abs(x: Int): Int =
@@ -84,7 +79,6 @@ object MPAufgaben {
   /**
    * Eingabe zweier Zahlen;
    * Berechnet wird Division ganzer Zahlen mit Rest
-   *
    * @param x ,y mit x>=0 und y>0
    * @return den Rest
    */
@@ -121,7 +115,6 @@ object MPAufgaben {
 
   /**
    * Summiert die Quadrate der einzelnen Ziffern
-   *
    * @param n Int Eingabe nur natürliche Zahlen
    * @param result given through the recursion as result
    * @return result Int Output
@@ -135,7 +128,6 @@ object MPAufgaben {
    * Ermittelt Ausgabe erstes y als Int, welches %(x*y,m)=1 ergibt
    * Erhöht i solange bis dies erfüllt ist. Kein abbruch vorhanden!
    * Falls x < m nicht stimmt wird -1 ausgegeben
-   *
    * @param x und m als Int Eingaben
    * @return y Int Output
    */
@@ -148,6 +140,15 @@ object MPAufgaben {
     else -1
   }
 
+  /**
+   * Invers Function but Recursive
+   * Ermittelt Ausgabe erstes y als Int, welches %(x*y,m)=1 ergibt
+   * Falls x < m nicht stimmt oder kein Ergebnis möglich ist wird -1 ausgegeben
+   * @param x erste Zahl
+   * @param m zweite Zahl
+   * @param y mit x die Inverse zu y
+   * @return Output Int die Inverse y
+   */
   @tailrec def inversRec(x:Int, m:Int, y:Int=0):Int = {
     if(ggT(x,m)!=1){
       if(%(x*y,m)==0) y
@@ -194,6 +195,12 @@ object MPAufgaben {
     else isPrim(x,i+2)
   }
 
+  /**
+   * Checks how many prime numbers there are under given value
+   * @param num given value / upper border
+   * @param count default value 0; No prime numbers found yet
+   * @return Output Int; Amount of found prime numbers
+   */
   @tailrec def numberOfPrimesUnder(num:Int, count:Int=0):Int = {
     if (num <= 1) return count
     if (isPrim(num)) numberOfPrimesUnder(num-1, count+1)
