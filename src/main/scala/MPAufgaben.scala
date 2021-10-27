@@ -17,7 +17,7 @@ object MPAufgaben {
     println(theValueFalse()&theValueTrue())
      */
     //testFibUp()
-    //collatzFunctionUp()
+    //testCollatzFunctionUp()
   }
 
   val betragEuro: Int = 100
@@ -342,10 +342,10 @@ object MPAufgaben {
    * Checks all Numbers above 0 or Input and continues if the Collatz Function reaches 1
    * @param x number from where we start checking
    */
-  @tailrec def collatzFunctionUp(x:Int=0):Unit = {
+  @tailrec def testCollatzFunctionUp(x:Int=0):Unit = {
     if(collatzFunction(x)){
       println("Für " + x + " erreicht die Collatz Funktion 1")
-      collatzFunctionUp(x+1)
+      testCollatzFunctionUp(x+1)
     }
   }
 
