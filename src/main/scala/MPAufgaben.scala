@@ -639,7 +639,14 @@ object MPAufgaben {
     else shiftHelper(tail(s),concat(save,charToString(head(s))))
   }
 
-  // ALLES NOCH UNFERTIG
+  /**
+   * Checks if Unicode of first String is < Unicode of second String
+   * First head of the Strings in Unicode, if they are equal second char and so on..
+   * if equal its false; if first string end before 2nd does it's smaller and true : "Hel" < "Hello"
+   * @param x first String
+   * @param y second String
+   * @return true only if first String < second String
+   */
   @tailrec def less(x:String,y:String):Boolean = {
     if(x==y) false
     else if (x=="") true
@@ -647,19 +654,42 @@ object MPAufgaben {
     else less(tail(x),tail(y))
   }
 
-  def charToString(x:Any):String = "" + x
+  /**
+   * Converts Char to String Type
+   * @param x given Char
+   * @return return String of converted Char
+   */
+  def charToString(x:Char):String = "" + x
 
+  /**
+   * Converts Bool to String : true -> "true" and false -> "false"
+   * @param x given Boolean
+   * @return return String of converted Bool
+   */
   def boolToString(x:Boolean):String =
     if(x) "true"
     else "false"
 
+  /**
+   * Converts Int To String
+   * @param x given Int
+   * @return Outputs String of Int 23->"23"
+   */
   def intToString(x:Int):String = intToStringHelper(x)
 
+  /**
+   * intToString Helper Function
+   * Converts Int to String
+   * @param x given Int
+   * @param save default Value = "" ; saves converted nums
+   * @return Outputs String of Int
+   */
   @tailrec private def intToStringHelper(x:Int,save:String=""):String = {
     if(x<=9) concat(charToString(toChar(48+x)),save)
     else intToStringHelper(x/10, concat(save,charToString(toChar(48 + %(x,10)))))
   }
 
+  //NICHT FERTIG
   def sort(s:String):String = {
     sortHelper(s)
   }
@@ -672,7 +702,7 @@ object MPAufgaben {
   }
 
   def swapFirstAndSecondChar(s:String):String = {
-    ???
+    ""
   }
 
   def nextChar(s:String):Char = head(tail(s))
