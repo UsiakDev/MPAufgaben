@@ -2,7 +2,6 @@ import scala.annotation.tailrec
 
 object MPAufgaben {
   def main(args: Array[String]): Unit = {
-    println(reverse("Hallo"))
     //println("Z : " + numberOfPrimesUnder(10000000))
     //collatzFunction(27)
     // Bei || und && wird nach Betrachtung des ersten Wertes abgebrochen falls
@@ -515,25 +514,6 @@ object MPAufgaben {
    */
   def concat(firstString:String,secondString:String):String = firstString + secondString
 
-  /**
-   * Puts together a Char before a String. Char cannot be empty ! ! !
-   * @param char given Char
-   * @param rest given String
-   * @return Outputs a String of Char+String
-   */
-  def concatWithCharBefore(char:Char, rest:String):String = {
-    char + rest
-  }
-
-  /**
-   * Puts together a Char after a String. Char cannot be empty ! ! !
-   * @param char given Char
-   * @param rest given String
-   * @return Outputs a String of String+Char
-   */
-  def concatWithCharAfter(char:Char, rest:String):String = {
-    rest + char
-  }
 
   /**
    * Takes the first Char of a String; CANNOT BE EMPTY ! ! !
@@ -584,7 +564,7 @@ object MPAufgaben {
    */
   @tailrec private def reverseHelper(word:String, save:String=""):String = {
     if(word=="") save
-    else reverseHelper(tail(word),concatWithCharBefore(head(word),save))
+    else reverseHelper(tail(word),concat(charToString(head(word)),save))
   }
 
   /**
@@ -607,5 +587,94 @@ object MPAufgaben {
     else containsHowOftenHelper(tail(word),char, counter + (if(head(word)==char) 1 else 0))
   }
 
+  /**
+   * Swaps a String on first occurence of given Char. String1 + Char + String2 -> String2 + Char + String 1
+   * @param s given String
+   * @param c given Char
+   * @return Outputs swapped String
+   */
+  def swapAt(s:String,c:Char):String = {
+    val index:Int = findCharIndex(s,c)
+    if(index!=0){
+      val firstPart = s.substring(0,index)
+      val secondPart = concat(s.substring(index+1,lengthOfString(s)),charToString(c))
+      concat(secondPart,firstPart)
+    }
+    else s
+  }
+
+  /**
+   * Helper function of Swap at; Finds first occurence of given Char in String
+   *                              OR returns 0 if not found at all.
+   * @param s given String
+   * @param c given Char
+   * @param index default Value = 0 , index at 0 where we start checking
+   * @return Outputs the Index where we found char or 0
+   */
+  @tailrec private def findCharIndex(s:String,c:Char,index:Int=0):Int = {
+    if(s=="") 0
+    else if(head(s)==c) index
+    else findCharIndex(tail(s),c,index+1)
+  }
+
+  /**
+   * Shifts last Char of a String in the front so : String+LastChar -> LastChar+String(without last Char)
+   * @param s given String
+   * @return Outputs shifted String
+   */
+  def shift(s:String):String = {
+    if(lengthOfString(s)<=1) s
+    else shiftHelper(s)
+  }
+
+  /**
+   * Private Helper Function for Shift
+   * Figures out the Last Char of given String; Puts it in front of rest of the String
+   * @param s given String
+   * @param save default Value = "" ; Saves the rest of the String
+   * @return Outputs shifted String
+   */
+  @tailrec private def shiftHelper(s:String,save:String=""):String = {
+    if(lengthOfString(s)==1) concat(s,save)
+    else shiftHelper(tail(s),concat(save,charToString(head(s))))
+  }
+
+  // ALLES NOCH UNFERTIG
+  @tailrec def less(x:String,y:String):Boolean = {
+    if(x==y) false
+    else if (x=="") true
+    else if(toUnicode(head(x))<toUnicode(head(x))) true
+    else less(tail(x),tail(y))
+  }
+
+  def charToString(x:Any):String = "" + x
+
+  def boolToString(x:Boolean):String =
+    if(x) "true"
+    else "false"
+
+  def intToString(x:Int):String = intToStringHelper(x)
+
+  @tailrec private def intToStringHelper(x:Int,save:String=""):String = {
+    if(x<=9) concat(charToString(toChar(48+x)),save)
+    else intToStringHelper(x/10, concat(save,charToString(toChar(48 + %(x,10)))))
+  }
+
+  def sort(s:String):String = {
+    sortHelper(s)
+  }
+
+  def sortHelper(s:String):String = {
+    var sequence = s
+    var counter:Int = 0
+    var clean:Boolean = true
+    ""
+  }
+
+  def swapFirstAndSecondChar(s:String):String = {
+    ???
+  }
+
+  def nextChar(s:String):Char = head(tail(s))
 
 }

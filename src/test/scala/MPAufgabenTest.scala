@@ -264,16 +264,6 @@ class MPAufgabenTest extends FunSuite {
     assert(concat("","")=="")
   }
 
-  test("concatWithCharBefore Test"){
-    assert(concatWithCharBefore('H',"allo")=="Hallo")
-    assert(concatWithCharBefore('l',"")=="l")
-  }
-
-  test("concatWithCharAfter Test"){
-    assert(concatWithCharAfter('H',"allo")=="alloH")
-    assert(concatWithCharAfter('l',"")=="l")
-  }
-
   test("head Test"){
     assert(head("Hallo")=='H')
     assert(head("H")=='H')
@@ -303,5 +293,44 @@ class MPAufgabenTest extends FunSuite {
     assert(containsHowOften("aaa",'a')==3)
     assert(containsHowOften("",'z')==0)
     assert(containsHowOften("ZZzHalloz5",'z')==2)
+  }
+
+  test("swapAt Test"){
+    assert(swapAt("Hallo Welt",' ')=="Welt Hallo")
+    assert(swapAt("Hallo Welt",'z')=="Hallo Welt")
+    assert(swapAt("Hallo Welt",'W')=="eltWHallo ")
+    assert(swapAt("",' ')=="")
+    assert(swapAt("ABCDEFG",'D')=="EFGDABC")
+  }
+
+  test("shift Test"){
+    assert(shift("abc")=="cab")
+    assert(shift("Hallo")=="oHall")
+    assert(shift("")=="")
+    assert(shift("d")=="d")
+    assert(shift("da")=="ad")
+    assert(shift(shift(shift("abc")))=="abc")
+  }
+
+  test("less Test"){
+    assert(!less("abc","abc"))
+    assert(less("ab","abc"))
+    assert(less("","abc"))
+    assert(!less("abc",""))
+  }
+
+  test("charToString Test"){
+    assert(charToString('a')=="a")
+    assert(charToString(' ')==" ")
+  }
+
+  test("boolToString Test"){
+    assert(boolToString(false)=="false")
+    assert(boolToString(true)=="true")
+  }
+
+  test("intToString Test"){
+    assert(intToString(23)=="23")
+    assert(intToString(0)=="0")
   }
 }
