@@ -248,4 +248,60 @@ class MPAufgabenTest extends FunSuite {
     assert(implies(x = false,y = true))
     assert(implies(x = false,y = false))
   }
+
+  test("toUnicode Test"){
+    assert(toUnicode('a')==97)
+    assert(toUnicode('z')==122)
+  }
+
+  test("toChar Test"){
+    assert(toChar(97)=='a')
+    assert(toChar(122)=='z')
+  }
+
+  test("concat Tests"){
+    assert(concat("Hallo ","Welt")=="Hallo Welt")
+    assert(concat("","")=="")
+  }
+
+  test("concatWithCharBefore Test"){
+    assert(concatWithCharBefore('H',"allo")=="Hallo")
+    assert(concatWithCharBefore('l',"")=="l")
+  }
+
+  test("concatWithCharAfter Test"){
+    assert(concatWithCharAfter('H',"allo")=="alloH")
+    assert(concatWithCharAfter('l',"")=="l")
+  }
+
+  test("head Test"){
+    assert(head("Hallo")=='H')
+    assert(head("H")=='H')
+  }
+
+  test("tail Test"){
+    assert(tail("Hallo Welt")=="allo Welt")
+    assert(tail("Ha")=="a")
+    assert(tail("H")=="")
+    assert(tail("")=="")
+  }
+
+  test("length Test"){
+    assert(lengthOfString("")==0)
+    assert(lengthOfString("H")==1)
+    assert(lengthOfString("Hallo")==5)
+  }
+
+  test("reverse"){
+    assert(reverse("Hallo")=="ollaH")
+    assert(reverse("allo")=="olla")
+    assert(reverse("")=="")
+    assert(reverse("d")=="d")
+  }
+
+  test("containsHowOften Test"){
+    assert(containsHowOften("aaa",'a')==3)
+    assert(containsHowOften("",'z')==0)
+    assert(containsHowOften("ZZzHalloz5",'z')==2)
+  }
 }

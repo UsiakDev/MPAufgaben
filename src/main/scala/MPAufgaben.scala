@@ -2,6 +2,7 @@ import scala.annotation.tailrec
 
 object MPAufgaben {
   def main(args: Array[String]): Unit = {
+    println(reverse("Hallo"))
     //println("Z : " + numberOfPrimesUnder(10000000))
     //collatzFunction(27)
     // Bei || und && wird nach Betrachtung des ersten Wertes abgebrochen falls
@@ -490,4 +491,121 @@ object MPAufgaben {
    * @return Output Boolean statement: If x==y True; otherwise false
    */
   def equivalent (x:Boolean,y:Boolean):Boolean = x==y
+
+  /**
+   * Converts Char to Unicode; CANNOT BE EMPTY ! ! !
+   * @param c given Char that's converted
+   * @return Outputs the Integer of the Char
+   */
+  def toUnicode(c:Char):Int = c
+
+  /**
+   * Converts Unicode to Char; CANNOT BE EMPTY ! ! !
+   * @param code given code that's converted
+   * @return Outputs the Char of the Unicode
+   */
+  def toChar(code:Int):Char = code.toChar
+
+  /**
+   * Puts together 2 Strings : concat("abc","def") = "abcdef"
+   * DOES NOT WORK FOR CHARS ! ! ! So there is another Function right after this one..
+   * @param firstString first given String
+   * @param secondString second given String
+   * @return Outputs the combined String
+   */
+  def concat(firstString:String,secondString:String):String = firstString + secondString
+
+  /**
+   * Puts together a Char before a String. Char cannot be empty ! ! !
+   * @param char given Char
+   * @param rest given String
+   * @return Outputs a String of Char+String
+   */
+  def concatWithCharBefore(char:Char, rest:String):String = {
+    char + rest
+  }
+
+  /**
+   * Puts together a Char after a String. Char cannot be empty ! ! !
+   * @param char given Char
+   * @param rest given String
+   * @return Outputs a String of String+Char
+   */
+  def concatWithCharAfter(char:Char, rest:String):String = {
+    rest + char
+  }
+
+  /**
+   * Takes the first Char of a String; CANNOT BE EMPTY ! ! !
+   * @param word given String
+   * @return Outputs the first Char of the given String
+   */
+  def head(word:String):Char = word.head
+
+  /**
+   * Removes the first Char of a String; Can be Empty : Would return "".
+   * @param word given String
+   * @return Outputs the given String without the first Char
+   */
+  def tail(word:String):String = word.tail
+
+  /**
+   * Counts up the length of a String
+   * @param word given String
+   * @return Outputs Integer Length of String
+   */
+  def lengthOfString(word:String):Int = {
+    lengthOfStringHelper(word)
+  }
+
+  /**
+   * Private Helper Function of lengthOfString;
+   * @param word given String
+   * @param counter Int with default Value 0; No length in the beginning of the counting
+   * @return Outputs Int Counter/Length of word
+   */
+  @tailrec private def lengthOfStringHelper(word:String,counter:Int=0):Int = {
+    if(word=="") counter
+    else lengthOfStringHelper(tail(word),counter+1)
+  }
+
+  /**
+   * Reverses a String / Mirrors it
+   * @param word given String
+   * @return Outputs String of reversed word
+   */
+  def reverse(word:String):String = reverseHelper(word)
+
+  /**
+   * Helper Function Of reverse
+   * @param word given word
+   * @param save saved up reversed word
+   * @return Outputs the reversed word as String
+   */
+  @tailrec private def reverseHelper(word:String, save:String=""):String = {
+    if(word=="") save
+    else reverseHelper(tail(word),concatWithCharBefore(head(word),save))
+  }
+
+  /**
+   * Counts up how often given char is found in word. Char may not be empty ! ! !
+   * @param word given String/Word
+   * @param char given char
+   * @return Outputs Integer of how often char was found in word
+   */
+  def containsHowOften(word:String,char:Char):Int = containsHowOftenHelper(word,char)
+
+  /**
+   * Helper Function of containsHowOften; Counts up how often given char is found in word. Char not empty !
+   * @param word given String
+   * @param char given Char
+   * @param counter default Value 0; starting at 0 found chars in word
+   * @return Outputs Integer of how often char was found in word
+   */
+  @tailrec private def containsHowOftenHelper(word:String, char:Char, counter:Int = 0):Int = {
+    if(word=="") counter
+    else containsHowOftenHelper(tail(word),char, counter + (if(head(word)==char) 1 else 0))
+  }
+
+
 }
