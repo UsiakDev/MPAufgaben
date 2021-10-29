@@ -18,6 +18,7 @@ object MPAufgaben {
      */
     //testFibUp()
     //testCollatzFunctionUp()
+    println(findNextPerfectNumber(7))
   }
 
   val betragEuro: Int = 100
@@ -223,7 +224,7 @@ object MPAufgaben {
    * @return Boolean output; true if given number is a perfect number
    */
   def isPerfectNumber(x:Int):Boolean = {
-    if(x<=0) false
+    if(x<=5) false
     else x==sumDividers(x)
   }
 
@@ -235,12 +236,10 @@ object MPAufgaben {
    * @return
    */
   @tailrec def sumDividers(x:Int, y:Int=1, save:Int=0):Int =
-    if(x>=2)
-      if (y > (x / 2))
-        save
-      else
-        sumDividers(x, y + 1, save + (if(%(x, y) == 0) y else 0) )
-    else 0
+    if (y > (x / 2))
+      save
+    else
+      sumDividers(x, y + 1, save + (if(%(x, y) == 0) y else 0) )
 
   /**
    * Finds biggest Fitting Numbers Exponent
@@ -661,6 +660,9 @@ object MPAufgaben {
    */
   def charToString(x:Char):String = "" + x
 
+  // Aufgabe sagt so. ? ? ?
+  def stringToString(s:String):String = s
+
   /**
    * Converts Bool to String : true -> "true" and false -> "false"
    * @param x given Boolean
@@ -691,20 +693,7 @@ object MPAufgaben {
 
   //NICHT FERTIG
   def sort(s:String):String = {
-    sortHelper(s)
+    "cry"
   }
-
-  def sortHelper(s:String):String = {
-    var sequence = s
-    var counter:Int = 0
-    var clean:Boolean = true
-    ""
-  }
-
-  def swapFirstAndSecondChar(s:String):String = {
-    ""
-  }
-
-  def nextChar(s:String):Char = head(tail(s))
 
 }
