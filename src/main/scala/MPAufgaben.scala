@@ -274,13 +274,13 @@ object MPAufgaben {
 
   /**
    * Calculates the greatest common divisor!
-   * Undefined for x or y == 0 ! ! !
+   * No negative result !
    * @param x first Number Input
    * @param y second Number Input
    * @return
    */
   def ggT(x:Int,y:Int):Int = {
-    if(x==0 || y==0) 0
+    if(x==0 || y==0) max(x,y)
     else abs(x*y)/kgV(x,y)
   }
 
@@ -294,7 +294,7 @@ object MPAufgaben {
    * @return the least common multiple; first found number when incremeting the multipliers
    */
   @tailrec def kgV(x:Int,y:Int, xMultiple:Int = 1, yMultiple:Int=1):Int = {
-    if(x*xMultiple == y*yMultiple) abs(x*xMultiple)
+    if(abs(x*xMultiple) == abs(y*yMultiple)) abs(x*xMultiple)
     else{
       if(min(abs(x*xMultiple),abs(y*yMultiple))==abs(x*xMultiple)) kgV(x,y,xMultiple+1,yMultiple)
       else kgV(x,y,xMultiple,yMultiple+1)
@@ -325,10 +325,7 @@ object MPAufgaben {
    * @return Outputs the calculated number
    */
   def product(x:BigInt , y:BigInt):BigInt = {
-    if(x+1==y){
-      println(x)
-      x
-    }
+    if(x+1==y) x
     else product(x,(x+y)/2) * product((x+y)/2,y)
   }
 
@@ -692,7 +689,7 @@ object MPAufgaben {
   }
 
   //NICHT FERTIG
-  def sort(s:String):String = {
+  def sort():String = {
     "cry"
   }
 

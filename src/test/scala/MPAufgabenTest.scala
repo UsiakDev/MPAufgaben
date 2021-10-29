@@ -164,6 +164,8 @@ class MPAufgabenTest extends FunSuite {
     assert(ggT(5,21)==1)
     assert(ggT(120,144)==24)
     assert(ggT(35,35)==35)
+    assert(ggT(4,0)==4)
+    assert(ggT(0,4)==4)
   }
 
   test("kgV Test"){
@@ -171,6 +173,7 @@ class MPAufgabenTest extends FunSuite {
     assert(kgV(3,3)==3)
     assert(kgV(15,100)==300)
     assert(kgV(-4,-5)==20)
+    assert(kgV(-4,5)==20)
   }
 
   test("teilerExperiment"){
