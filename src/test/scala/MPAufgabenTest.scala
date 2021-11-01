@@ -191,8 +191,9 @@ class MPAufgabenTest extends FunSuite {
     assert(product(5,7)==30)
     assert(product(5,8)==210)
     assert(product(10,30) ==
-      BigInt("24365525776399090483200000")
-    )
+      BigInt("24365525776399090483200000"))
+    assert(product(6,6)==1)
+    assert(product(6,0)==1)
   }
 
   test("collatzFunction Test"){
@@ -211,7 +212,7 @@ class MPAufgabenTest extends FunSuite {
   }
 
   test("tailFib Test"){
-    assert(tailFib(0)==0)
+    assert(fastFib(0)==0)
     assert(fastFib(1)==1)
     assert(fastFib(5)==5)
     assert(fastFib(6)==8)
@@ -335,5 +336,21 @@ class MPAufgabenTest extends FunSuite {
   test("intToString Test"){
     assert(intToString(23)=="23")
     assert(intToString(0)=="0")
+  }
+
+  test("delChar Test"){
+    assert(delChar("a",'c')=="a")
+    assert(delChar("abc",'c')=="ab")
+    assert(delChar("abcc",'c')=="abc")
+    assert(delChar("",'c')=="")
+    assert(delChar("c",'c')=="")
+  }
+
+  test("sort Test"){
+    assert(sort("cba")=="abc")
+    assert(sort("")=="")
+    assert(sort("abbbc012ABC")=="012ABCabbbc")
+    assert(sort("c")=="c")
+
   }
 }

@@ -18,7 +18,7 @@ object MPAufgaben {
      */
     //testFibUp()
     //testCollatzFunctionUp()
-    println(findNextPerfectNumber(7))
+    //println(findNextPerfectNumber(7))
   }
 
   val betragEuro: Int = 100
@@ -325,8 +325,11 @@ object MPAufgaben {
    * @return Outputs the calculated number
    */
   def product(x:BigInt , y:BigInt):BigInt = {
-    if(x+1==y) x
-    else product(x,(x+y)/2) * product((x+y)/2,y)
+    if(y<=x) 1
+    else {
+      if (x + 1 == y) x
+      else product(x, (x + y) / 2) * product((x + y) / 2, y)
+    }
   }
 
   /**
@@ -359,16 +362,16 @@ object MPAufgaben {
    */
   @tailrec def collatzFunction(n:Int):Boolean = {
     if(n<=1){
-      //println("1 wurde erreicht!")
+      println("1 wurde erreicht!")
       true
     }
     else{
       if(n%2==0){
-        //println("Derzeitige Zahl : " + n)
+        println("Derzeitige Zahl : " + n)
         collatzFunction(n/2)
       }
       else{
-        //println("Derzeitige Zahl : " + n)
+        println("Derzeitige Zahl : " + n)
         collatzFunction(3*n+1)
       }
     }
@@ -384,10 +387,17 @@ object MPAufgaben {
     fastFibHelper(n)
   }
 
-  // Helper Function for fastFib
-  @tailrec private def fastFibHelper(num:BigInt,i:BigInt=0, a:BigInt=0, b:BigInt=1):BigInt = {
-    if(i==num) a
-    else fastFibHelper(num,i+1,b,a+b)
+  /**
+   * Helper Function of fastFib
+   * @param num looked for Fib Number
+   * @param a 1 before new fib num
+   * @param b new fib num
+   * @return Outputs Int a as latest new fib num
+   */
+  @tailrec private def fastFibHelper(num:BigInt, a:BigInt=0, b:BigInt=1):BigInt = {
+    if(num==0) a
+    else if(num==1) b
+    else fastFibHelper(num-1,b,a+b)
   }
 
   /**
@@ -589,13 +599,30 @@ object MPAufgaben {
    * @param c given Char
    * @return Outputs swapped String
    */
-  def swapAt(s:String,c:Char):String = {
-    val index:Int = findCharIndex(s,c)
-    if(index!=0){
-      val firstPart = s.substring(0,index)
-      val secondPart = concat(s.substring(index+1,lengthOfString(s)),charToString(c))
+      def swapAt(s:String,c:Char):String = {
+        val index:Int = findCharIndex(s,c)
+        if(index>0){
+          val firstPart = s.substring(0,index)
+          val secondPart = concat(s.substring(index+1,lengthOfString(s)),charToString(c))
       concat(secondPart,firstPart)
     }
+    else s
+  }
+
+  /**
+   * Deletes a given char from a string only once if found. Otherwise returns string itself
+   * @param s given String
+   * @param c given Char
+   * @return Outputs String with a deleted char or not depending if it found one
+   */
+  def delChar(s:String,c:Char):String = {
+    val index:Int = findCharIndex(s,c)
+    if(index>0){
+      val firstPart = s.substring(0,index)
+      val secondPart = s.substring(index+1,lengthOfString(s))
+      concat(firstPart,secondPart)
+    }
+    else if(index==0) tail(s)
     else s
   }
 
@@ -605,10 +632,10 @@ object MPAufgaben {
    * @param s given String
    * @param c given Char
    * @param index default Value = 0 , index at 0 where we start checking
-   * @return Outputs the Index where we found char or 0
+   * @return Outputs the Index where we found char or -1
    */
   @tailrec private def findCharIndex(s:String,c:Char,index:Int=0):Int = {
-    if(s=="") 0
+    if(s=="") -1
     else if(head(s)==c) index
     else findCharIndex(tail(s),c,index+1)
   }
@@ -688,9 +715,38 @@ object MPAufgaben {
     else intToStringHelper(x/10, concat(save,charToString(toChar(48 + %(x,10)))))
   }
 
-  //NICHT FERTIG
-  def sort():String = {
-    "cry"
+  /**
+   * Sorts a String based on it's Unicode
+   * @param s given String
+   * @return Outputs sorted String
+   */
+  def sort(s:String):String = {
+    sortThat(s)
+  }
+
+  /**
+   * Helper Function of Sort. Does the actual sorting stuff
+   * @param s given String
+   * @param save default Value = ""; Saves up the sorted String
+   * @return Outputs sorted String
+   */
+  @tailrec private def sortThat(s:String,save:String=""):String = {
+    if(s=="") save
+    else{
+      val smallestChar:Char = findSmallestChar(s,head(s))
+      sortThat(delChar(s,smallestChar),concat(save,charToString(smallestChar)))
+    }
+  }
+
+  /**
+   * Helper function of sortThat - findsSmallestChar according to it's Unicode Value
+   * @param s given String
+   * @param c given Char that's supposed to be the Smallest Char
+   * @return Outputs smallest Char found in String
+   */
+  @tailrec private def findSmallestChar(s:String,c:Char):Char = {
+    if(s=="") c
+    else findSmallestChar(tail(s),if(toUnicode(head(s))<toUnicode(c)) head(s) else c)
   }
 
 }
