@@ -214,6 +214,16 @@ object StringAufgaben {
   }
 
   /**
+   * Shifts with substrings; Puts last char infront of rest
+   * @param s given string
+   * @return Outputs shifted String
+   */
+  def shiftWithSubString(s:String):String = {
+    if(lengthOfString(s)<=1) s
+    else concat(s.substring(lengthOfString(s)-1,lengthOfString(s)),s.substring(0,lengthOfString(s)-1))
+  }
+
+  /**
    * Checks if Unicode of first String is < Unicode of second String
    * First head of the Strings in Unicode, if they are equal second char and so on..
    * if equal its false; if first string end before 2nd does it's smaller and true : "Hel" < "Hello"

@@ -74,6 +74,15 @@ class StringAufgabenTest extends FunSuite{
     assert(shift(shift(shift("abc")))=="abc")
   }
 
+  test("shiftWithSubString Test"){
+    assert(shift("abc")=="cab")
+    assert(shift("Hallo")=="oHall")
+    assert(shift("")=="")
+    assert(shift("d")=="d")
+    assert(shift("da")=="ad")
+    assert(shift(shift(shift("abc")))=="abc")
+  }
+
   test("less Test"){
     assert(less("Abc","abc"))
     assert(!less("abc","abc"))
