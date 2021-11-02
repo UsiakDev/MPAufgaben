@@ -43,8 +43,9 @@ object StringAufgaben {
    * @param save default Value = "" ; saves converted nums
    * @return Outputs String of Int
    */
-  @tailrec private def intToStringHelper(x:Int,save:String=""):String = {
-    if(x<=9) concat(toString2(toChar(48+x)),save)
+  private def intToStringHelper(x:Int,save:String=""):String = {
+    if(x<0) concat("-",intToStringHelper(abs(x)))
+    else if(x<=9) concat(toString2(toChar(48+x)),save)
     else intToStringHelper(x/10, concat(toString2(toChar(48 + %(x,10))),save))
   }
 

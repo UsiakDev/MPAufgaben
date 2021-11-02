@@ -7,8 +7,11 @@ class StringAufgabenTest extends FunSuite{
     assert(toString2('c')=="c")
     assert(toString2("c")=="c")
     assert(toString2(true)=="true")
+    assert(toString2(0)=="0")
     assert(toString2(2)=="2")
+    assert(toString2(-2)=="-2")
     assert(toString2(213)=="213")
+    assert(toString2(-213)=="-213")
   }
 
   test("toUnicode Test"){
