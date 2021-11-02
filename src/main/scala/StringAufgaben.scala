@@ -223,8 +223,8 @@ object StringAufgaben {
    */
   @tailrec def less(x:String,y:String):Boolean = {
     if(x==y) false
-    else if (x=="") true
-    else if(toUnicode(head(x))<toUnicode(head(x))) true
+    else if (x=="") true else if (y=="") false
+    else if(toUnicode(head(x))<toUnicode(head(y))) true
     else less(tail(x),tail(y))
   }
 

@@ -75,10 +75,13 @@ class StringAufgabenTest extends FunSuite{
   }
 
   test("less Test"){
+    assert(less("Abc","abc"))
     assert(!less("abc","abc"))
     assert(less("ab","abc"))
     assert(less("","abc"))
     assert(!less("abc",""))
+    assert(less("0123","01234"))
+    assert(less("ABC","ABc"))
   }
 
   test("charToString Test"){
