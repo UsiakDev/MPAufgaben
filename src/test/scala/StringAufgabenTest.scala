@@ -84,21 +84,6 @@ class StringAufgabenTest extends FunSuite{
     assert(less("ABC","ABc"))
   }
 
-  test("charToString Test"){
-    assert(toString2('a')=="a")
-    assert(toString2(' ')==" ")
-  }
-
-  test("boolToString Test"){
-    assert(toString2(false)=="false")
-    assert(toString2(true)=="true")
-  }
-
-  test("intToString Test"){
-    assert(toString2(23)=="23")
-    assert(toString2(0)=="0")
-  }
-
   test("delChar Test"){
     assert(delChar("a",'c')=="a")
     assert(delChar("abc",'c')=="ab")
