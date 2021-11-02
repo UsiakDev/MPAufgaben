@@ -3,6 +3,14 @@ import StringAufgaben._
 
 class StringAufgabenTest extends FunSuite{
 
+  test("toString Test"){
+    assert(toString2('c')=="c")
+    assert(toString2("c")=="c")
+    assert(toString2(true)=="true")
+    assert(toString2(2)=="2")
+    assert(toString2(213)=="213")
+  }
+
   test("toUnicode Test"){
     assert(toUnicode('a')==97)
     assert(toUnicode('z')==122)
@@ -74,18 +82,18 @@ class StringAufgabenTest extends FunSuite{
   }
 
   test("charToString Test"){
-    assert(charToString('a')=="a")
-    assert(charToString(' ')==" ")
+    assert(toString2('a')=="a")
+    assert(toString2(' ')==" ")
   }
 
   test("boolToString Test"){
-    assert(boolToString(false)=="false")
-    assert(boolToString(true)=="true")
+    assert(toString2(false)=="false")
+    assert(toString2(true)=="true")
   }
 
   test("intToString Test"){
-    assert(intToString(23)=="23")
-    assert(intToString(0)=="0")
+    assert(toString2(23)=="23")
+    assert(toString2(0)=="0")
   }
 
   test("delChar Test"){
@@ -102,5 +110,4 @@ class StringAufgabenTest extends FunSuite{
     assert(sort("abbbc012ABC")=="012ABCabbbc")
     assert(sort("c")=="c")
   }
-
 }

@@ -7,6 +7,48 @@ object StringAufgaben {
   }
 
   /**
+   * Converts Char to String Type
+   * @param x given Char
+   * @return return String of converted Char
+   */
+  def toString2(x:Char):String = "" + x
+
+  /**
+   * Converts a String to String
+   * @param s given String
+   * @return returns String
+   */
+  def toString2(s:String):String = s
+
+  /**
+   * Converts Bool to String : true -> "true" and false -> "false"
+   * @param x given Boolean
+   * @return return String of converted Bool
+   */
+  def toString2(x:Boolean):String =
+    if(x) "true"
+    else "false"
+
+  /**
+   * Converts Int To String
+   * @param x given Int
+   * @return Outputs String of Int 23->"23"
+   */
+  def toString2(x:Int):String = intToStringHelper(x)
+
+  /**
+   * intToString Helper Function
+   * Converts Int to String
+   * @param x given Int
+   * @param save default Value = "" ; saves converted nums
+   * @return Outputs String of Int
+   */
+  @tailrec private def intToStringHelper(x:Int,save:String=""):String = {
+    if(x<=9) concat(toString2(toChar(48+x)),save)
+    else intToStringHelper(x/10, concat(toString2(toChar(48 + %(x,10))),save))
+  }
+
+  /**
    * Converts Char to Unicode; CANNOT BE EMPTY ! ! !
    * @param c given Char that's converted
    * @return Outputs the Integer of the Char
@@ -22,7 +64,7 @@ object StringAufgaben {
 
   /**
    * Puts together 2 Strings : concat("abc","def") = "abcdef"
-   * DOES NOT WORK FOR CHARS ! ! ! So there is another Function right after this one..
+   * DOES NOT WORK FOR CHARS ! ! ! Gotta convert a char to string
    * @param firstString first given String
    * @param secondString second given String
    * @return Outputs the combined String
@@ -79,7 +121,7 @@ object StringAufgaben {
    */
   @tailrec private def reverseHelper(word:String, save:String=""):String = {
     if(word=="") save
-    else reverseHelper(tail(word),concat(charToString(head(word)),save))
+    else reverseHelper(tail(word),concat(toString2(head(word)),save))
   }
 
   /**
@@ -112,7 +154,7 @@ object StringAufgaben {
     val index:Int = findCharIndex(s,c)
     if(index>0){
       val firstPart = s.substring(0,index)
-      val secondPart = concat(s.substring(index+1,lengthOfString(s)),charToString(c))
+      val secondPart = concat(s.substring(index+1,lengthOfString(s)),toString2(c))
       concat(secondPart,firstPart)
     }
     else s
@@ -168,7 +210,7 @@ object StringAufgaben {
    */
   @tailrec private def shiftHelper(s:String,save:String=""):String = {
     if(lengthOfString(s)==1) concat(s,save)
-    else shiftHelper(tail(s),concat(save,charToString(head(s))))
+    else shiftHelper(tail(s),concat(save,toString2(head(s))))
   }
 
   /**
@@ -184,44 +226,6 @@ object StringAufgaben {
     else if (x=="") true
     else if(toUnicode(head(x))<toUnicode(head(x))) true
     else less(tail(x),tail(y))
-  }
-
-  /**
-   * Converts Char to String Type
-   * @param x given Char
-   * @return return String of converted Char
-   */
-  def charToString(x:Char):String = "" + x
-
-  // Aufgabe sagt so. ? ? ?
-  def stringToString(s:String):String = s
-
-  /**
-   * Converts Bool to String : true -> "true" and false -> "false"
-   * @param x given Boolean
-   * @return return String of converted Bool
-   */
-  def boolToString(x:Boolean):String =
-    if(x) "true"
-    else "false"
-
-  /**
-   * Converts Int To String
-   * @param x given Int
-   * @return Outputs String of Int 23->"23"
-   */
-  def intToString(x:Int):String = intToStringHelper(x)
-
-  /**
-   * intToString Helper Function
-   * Converts Int to String
-   * @param x given Int
-   * @param save default Value = "" ; saves converted nums
-   * @return Outputs String of Int
-   */
-  @tailrec private def intToStringHelper(x:Int,save:String=""):String = {
-    if(x<=9) concat(charToString(toChar(48+x)),save)
-    else intToStringHelper(x/10, concat(save,charToString(toChar(48 + %(x,10)))))
   }
 
   /**
@@ -243,7 +247,7 @@ object StringAufgaben {
     if(s=="") save
     else{
       val smallestChar:Char = findSmallestChar(s,head(s))
-      sortThat(delChar(s,smallestChar),concat(save,charToString(smallestChar)))
+      sortThat(delChar(s,smallestChar),concat(save,toString2(smallestChar)))
     }
   }
 
