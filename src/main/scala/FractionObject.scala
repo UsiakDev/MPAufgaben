@@ -58,12 +58,13 @@ object FractionObject {
   def toString(x:Fraction):String = toString2(x.enumerator) + divider + toString2(x.denominator)
 
   /**
-   * Rationalising a Fraction.
+   * Rationalising a Fraction | Puts minus in the right place
    * @param x given Fraction
    * @return Outputs rationalised Fraction
    */
-  def toRational(x:Fraction):Fraction = {
-    if(ggT(x.enumerator,x.denominator)==1) x
+  @tailrec def toRational(x:Fraction):Fraction = {
+    if(x.denominator<0) toRational(createFraction(x.enumerator*(-1),x.denominator*(-1)))
+    else if(ggT(x.enumerator,x.denominator)==1) x
     else{
       val ggT:Int = MPAufgaben.ggT(x.enumerator,x.denominator)
       createFraction(x.enumerator/ggT,x.denominator/ggT)

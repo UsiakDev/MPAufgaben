@@ -23,6 +23,9 @@ class FractionObjectTest extends FunSuite{
 
   test("toRational Test"){
     assert(toRational(createFraction(3,6))==createFraction(1,2))
+    assert(toRational(createFraction(-3,-6))==createFraction(1,2))
+    assert(toRational(createFraction(3,-6))==createFraction(-1,2))
+    assert(toRational(createFraction(-3,6))==createFraction(-1,2))
     assert(toRational(createFraction(3,9))==createFraction(1,3))
     assert(toRational(createFraction(12,120))==createFraction(1,10))
   }
