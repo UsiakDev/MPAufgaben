@@ -126,6 +126,16 @@ object StringAufgaben {
   }
 
   /**
+   * Reverses / Mirrors a String
+   * @param s given String
+   * @return Outputs mirrored string
+   */
+  def reverseRecursive(s:String):String = {
+    if(s=="") s
+    else concat(reverseRecursive(tail(s)),toString2(head(s)))
+  }
+
+  /**
    * Counts up how often given char is found in word. Char may not be empty ! ! !
    * @param word given String/Word
    * @param char given char

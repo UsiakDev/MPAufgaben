@@ -54,6 +54,13 @@ class StringAufgabenTest extends FunSuite{
     assert(reverse("d")=="d")
   }
 
+  test("reverseRec"){
+    assert(reverseRecursive("Hallo")=="ollaH")
+    assert(reverseRecursive("allo")=="olla")
+    assert(reverseRecursive("")=="")
+    assert(reverseRecursive("d")=="d")
+  }
+
   test("containsHowOften Test"){
     assert(containsHowOften("aaa",'a')==3)
     assert(containsHowOften("",'z')==0)

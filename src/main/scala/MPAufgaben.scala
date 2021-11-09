@@ -77,6 +77,10 @@ object MPAufgaben {
     if (x < 0) -x
     else x
 
+  def abs(x: BigInt): BigInt =
+    if (x < 0) -x
+    else x
+
   /**
    * Eingabe zweier Zahlen;
    * Berechnet wird Division ganzer Zahlen mit Rest
@@ -487,6 +491,10 @@ object MPAufgaben {
    */
   def implies(x:Boolean,y: => Boolean):Boolean =
     if(x && not(y)) false
+    else true
+
+  def implies2(x:Boolean,y: => Boolean):Boolean =
+    if(x) y
     else true
 
   /**
