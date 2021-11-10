@@ -2,6 +2,10 @@ import org.scalatest.FunSuite
 import FractionObject._
 
 class FractionObjectTest extends FunSuite{
+  test("create Fraction Test"){
+    intercept[Exception]{Fraction(3,0)}
+  }
+
   test("Modulo Test"){
     assert(%(7,10)==7)
     assert(%(13,10)==3)
@@ -10,6 +14,7 @@ class FractionObjectTest extends FunSuite{
     assert(%(10,-7)==3)
     assert(%(-10,7)==(-3))
     assert(%(-10,-7)==(-3))
+    intercept[Exception]{%(4,0)}
   }
 
   test("ggT Test"){
