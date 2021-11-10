@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 
 object FractionObject {
   def main(args: Array[String]): Unit = {
-    println(createFraction(3,5))
+    println(Fraction(3,5))
   }
 
   val divider:Char = '/'
@@ -15,17 +15,8 @@ object FractionObject {
    * @param enumerator given enumerator
    * @param denominator given denominator ; => enumerator / denominator
    */
-  case class Fraction private(enumerator:Int,denominator:Int)
-
-  /**
-   * creates a Fraction, without rationalising it
-   * @param enum given enum
-   * @param denom given denom
-   * @return Outputs created Fraction; or Exception div0 if denom is 0
-   */
-  def createFraction(enum:Int,denom:Int):Fraction = {
-    if(denom==0) throw div0
-    else Fraction(enum,denom)
+  case class Fraction(enumerator:Int,denominator:Int){
+    if(denominator==0) throw div0
   }
 
   /**
@@ -63,11 +54,11 @@ object FractionObject {
    * @return Outputs rationalised Fraction
    */
   @tailrec def toRational(x:Fraction):Fraction = {
-    if(x.denominator<0) toRational(createFraction(x.enumerator*(-1),x.denominator*(-1)))
+    if(x.denominator<0) toRational(Fraction(x.enumerator*(-1),x.denominator*(-1)))
     else if(ggT(x.enumerator,x.denominator)==1) x
     else{
       val ggT:Int = MPAufgaben.ggT(x.enumerator,x.denominator)
-      createFraction(x.enumerator/ggT,x.denominator/ggT)
+      Fraction(x.enumerator/ggT,x.denominator/ggT)
     }
   }
 
@@ -94,7 +85,7 @@ object FractionObject {
    * @return Outputs addition of first and second Fraction
    */
   def add(x:Fraction,y:Fraction):Fraction =
-    toRational(createFraction(x.enumerator*y.denominator+y.enumerator*x.denominator, x.denominator*y.denominator))
+    toRational(Fraction(x.enumerator*y.denominator+y.enumerator*x.denominator, x.denominator*y.denominator))
 
   /**
    * subtract Function for Fractions
@@ -103,7 +94,7 @@ object FractionObject {
    * @return Outputs subtraction of first and second Fraction
    */
   def subtract(x:Fraction,y:Fraction):Fraction =
-    toRational(createFraction(x.enumerator*y.denominator-y.enumerator*x.denominator, x.denominator*y.denominator))
+    toRational(Fraction(x.enumerator*y.denominator-y.enumerator*x.denominator, x.denominator*y.denominator))
 
   /**
    * * function for Fractions
@@ -112,7 +103,7 @@ object FractionObject {
    * @return Outputs multiplication of first and second Fraction
    */
   def *(x:Fraction,y:Fraction):Fraction =
-    toRational(createFraction(x.enumerator*y.enumerator,x.denominator*y.denominator))
+    toRational(Fraction(x.enumerator*y.enumerator,x.denominator*y.denominator))
 
   /**
    * / function for Fractions
@@ -121,5 +112,5 @@ object FractionObject {
    * @return Outputs division of first and second Fraction
    */
   def /(x:Fraction,y:Fraction):Fraction =
-    toRational(createFraction(x.enumerator*y.denominator,x.denominator*y.enumerator))
+    toRational(Fraction(x.enumerator*y.denominator,x.denominator*y.enumerator))
 }

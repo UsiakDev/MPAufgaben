@@ -22,43 +22,43 @@ class FractionObjectTest extends FunSuite{
   }
 
   test("toRational Test"){
-    assert(toRational(createFraction(3,6))==createFraction(1,2))
-    assert(toRational(createFraction(-3,-6))==createFraction(1,2))
-    assert(toRational(createFraction(3,-6))==createFraction(-1,2))
-    assert(toRational(createFraction(-3,6))==createFraction(-1,2))
-    assert(toRational(createFraction(3,9))==createFraction(1,3))
-    assert(toRational(createFraction(12,120))==createFraction(1,10))
+    assert(toRational(Fraction(3,6))==Fraction(1,2))
+    assert(toRational(Fraction(-3,-6))==Fraction(1,2))
+    assert(toRational(Fraction(3,-6))==Fraction(-1,2))
+    assert(toRational(Fraction(-3,6))==Fraction(-1,2))
+    assert(toRational(Fraction(3,9))==Fraction(1,3))
+    assert(toRational(Fraction(12,120))==Fraction(1,10))
   }
 
   test("Fraction less Test"){
-    assert(!less(createFraction(1,2),createFraction(1,3)))
-    assert(less(createFraction(1,2),createFraction(2,3)))
-    assert(less(createFraction(1,2),createFraction(3,5)))
-    assert(less(createFraction(6,10),createFraction(4,5)))
+    assert(!less(Fraction(1,2),Fraction(1,3)))
+    assert(less(Fraction(1,2),Fraction(2,3)))
+    assert(less(Fraction(1,2),Fraction(3,5)))
+    assert(less(Fraction(6,10),Fraction(4,5)))
   }
 
   test("add Test"){
-    assert(add(createFraction(1,2),createFraction(1,2))==createFraction(1,1))
-    assert(add(createFraction(1,2),createFraction(2,2))==createFraction(3,2))
-    assert(add(createFraction(3,5),createFraction(5,7))==createFraction(46,35))
+    assert(add(Fraction(1,2),Fraction(1,2))==Fraction(1,1))
+    assert(add(Fraction(1,2),Fraction(2,2))==Fraction(3,2))
+    assert(add(Fraction(3,5),Fraction(5,7))==Fraction(46,35))
   }
 
   test("subtract Test"){
     //assert(add(createFraction(1,2),createFraction(1,2))==createFraction(0,0))
-    assert(subtract(createFraction(2,1),createFraction(1,2))==createFraction(3,2))
-    assert(subtract(createFraction(7,5),createFraction(2,5))==createFraction(1,1))
+    assert(subtract(Fraction(2,1),Fraction(1,2))==Fraction(3,2))
+    assert(subtract(Fraction(7,5),Fraction(2,5))==Fraction(1,1))
   }
 
   test("* Test"){
-    assert(*(createFraction(1,2),createFraction(1,2))==createFraction(1,4))
-    assert(*(createFraction(2,1),createFraction(1,2))==createFraction(1,1))
-    assert(*(createFraction(7,5),createFraction(2,5))==createFraction(14,25))
+    assert(*(Fraction(1,2),Fraction(1,2))==Fraction(1,4))
+    assert(*(Fraction(2,1),Fraction(1,2))==Fraction(1,1))
+    assert(*(Fraction(7,5),Fraction(2,5))==Fraction(14,25))
   }
 
   test("/ Test"){
-    assert(/(createFraction(1,2),createFraction(1,2))==createFraction(1,1))
-    assert(/(createFraction(2,1),createFraction(1,2))==createFraction(4,1))
-    assert(/(createFraction(7,5),createFraction(2,5))==createFraction(7,2))
+    assert(/(Fraction(1,2),Fraction(1,2))==Fraction(1,1))
+    assert(/(Fraction(2,1),Fraction(1,2))==Fraction(4,1))
+    assert(/(Fraction(7,5),Fraction(2,5))==Fraction(7,2))
   }
 
 
