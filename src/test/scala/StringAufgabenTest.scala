@@ -69,6 +69,7 @@ class StringAufgabenTest extends FunSuite{
 
   test("swapAt Test"){
     assert(swapAt("Hallo Welt",' ')=="Welt Hallo")
+    assert(swapAt("Hallo Welt",'H')=="allo WeltH")
     assert(swapAt("Hallo Welt",'z')=="Hallo Welt")
     assert(swapAt("Hallo Welt",'W')=="eltWHallo ")
     assert(swapAt("",' ')=="")

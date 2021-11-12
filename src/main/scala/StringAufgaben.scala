@@ -163,7 +163,7 @@ object StringAufgaben {
    */
   def swapAt(s:String,c:Char):String = {
     val index:Int = findCharIndex(s,c)
-    if(index>0){
+    if(index>=0){
       val firstPart = s.substring(0,index)
       val secondPart = concat(s.substring(index+1,lengthOfString(s)),toString2(c))
       concat(secondPart,firstPart)
@@ -208,8 +208,7 @@ object StringAufgaben {
    * @return Outputs shifted String
    */
   def shift(s:String):String = {
-    if(lengthOfString(s)<=1) s
-    else shiftHelper(s)
+    shiftHelper(s)
   }
 
   /**
@@ -220,7 +219,7 @@ object StringAufgaben {
    * @return Outputs shifted String
    */
   @tailrec private def shiftHelper(s:String,save:String=""):String = {
-    if(lengthOfString(s)==1) concat(s,save)
+    if(lengthOfString(s)<=1) concat(s,save)
     else shiftHelper(tail(s),concat(save,toString2(head(s))))
   }
 
