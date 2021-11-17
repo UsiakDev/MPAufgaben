@@ -15,7 +15,7 @@ object FractionObject {
    * @param enumerator given enumerator
    * @param denominator given denominator ; => enumerator / denominator
    */
-  case class Fraction(enumerator:Int,denominator:Int){
+  case class Fraction(enumerator:BigInt,denominator:BigInt){
     if(denominator==0) throw div0
   }
 
@@ -31,22 +31,33 @@ object FractionObject {
   }
 
   /**
+   * Returns absolute value of a BigInt
+   * @param x given BigInt
+   * @return absolute value of BigInt
+   */
+  def bigIntAbs(x:BigInt):BigInt = if(x<0) -x else x
+
+  /**
    * ggT Function
    * @param x first int
    * @param y second int
    * @return outputs greatest common divisor
    */
   @tailrec def ggT(x:BigInt, y:BigInt):BigInt = {
-    if(y==0) x
+    if(y==0) bigIntAbs(x)
     else ggT(y,%(x,y))
   }
 
+  val One:BigInt = BigInt(1)
   /**
    * returns Fraction as String
    * @param x given Fraction
    * @return Outputs Fraction as String
    */
-  def toString(x:Fraction):String = toString2(x.enumerator) + divider + toString2(x.denominator)
+  def toString(x:Fraction):String = x.denominator match{
+    case One => toString2(x.enumerator)
+    case _ => toString2(x.enumerator) + divider + toString2(x.denominator)
+  }
 
   /**
    * Rationalising a Fraction | Puts minus in the right place
@@ -57,7 +68,7 @@ object FractionObject {
     if(x.denominator<0) toRational(Fraction(x.enumerator*(-1),x.denominator*(-1)))
     else if(ggT(x.enumerator,x.denominator)==1) x
     else{
-      val ggT:Int = MPAufgaben.ggT(x.enumerator,x.denominator)
+      val ggT:BigInt = FractionObject.ggT(x.enumerator,x.denominator)
       Fraction(x.enumerator/ggT,x.denominator/ggT)
     }
   }

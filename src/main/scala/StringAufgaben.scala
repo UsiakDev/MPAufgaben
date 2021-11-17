@@ -20,6 +20,8 @@ object StringAufgaben {
    */
   def toString2(s:String):String = s
 
+  def toString2(s:BigInt):String = "" + s
+
   /**
    * Converts Bool to String : true -> "true" and false -> "false"
    * @param x given Boolean

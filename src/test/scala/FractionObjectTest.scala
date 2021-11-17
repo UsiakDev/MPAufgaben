@@ -18,12 +18,18 @@ class FractionObjectTest extends FunSuite{
   }
 
   test("ggT Test"){
-    assert(ggT(5,20)==5)
-    assert(ggT(5,21)==1)
-    assert(ggT(120,144)==24)
-    assert(ggT(35,35)==35)
-    assert(ggT(4,0)==4)
-    assert(ggT(0,4)==4)
+    assert(FractionObject.ggT(5,20)==5)
+    assert(FractionObject.ggT(5,21)==1)
+    assert(FractionObject.ggT(120,144)==24)
+    assert(FractionObject.ggT(35,35)==35)
+    assert(FractionObject.ggT(4,0)==4)
+    assert(FractionObject.ggT(0,4)==4)
+    assert(FractionObject.ggT(-3,6)==3)
+  }
+
+  test("toString Test"){
+    assert(FractionObject.toString(Fraction(3,1))=="3")
+    assert(FractionObject.toString(Fraction(3,2))=="3/2")
   }
 
   test("toRational Test"){
@@ -49,7 +55,6 @@ class FractionObjectTest extends FunSuite{
   }
 
   test("subtract Test"){
-    //assert(add(createFraction(1,2),createFraction(1,2))==createFraction(0,0))
     assert(subtract(Fraction(2,1),Fraction(1,2))==Fraction(3,2))
     assert(subtract(Fraction(7,5),Fraction(2,5))==Fraction(1,1))
   }
@@ -65,6 +70,4 @@ class FractionObjectTest extends FunSuite{
     assert(/(Fraction(2,1),Fraction(1,2))==Fraction(4,1))
     assert(/(Fraction(7,5),Fraction(2,5))==Fraction(7,2))
   }
-
-
 }
