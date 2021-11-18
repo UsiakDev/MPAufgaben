@@ -66,7 +66,6 @@ object FractionObject {
    */
   @tailrec def toRational(x:Fraction):Fraction = {
     if(x.denominator<0) toRational(Fraction(x.enumerator*(-1),x.denominator*(-1)))
-    else if(ggT(x.enumerator,x.denominator)==1) x
     else{
       val ggT:BigInt = FractionObject.ggT(x.enumerator,x.denominator)
       Fraction(x.enumerator/ggT,x.denominator/ggT)
