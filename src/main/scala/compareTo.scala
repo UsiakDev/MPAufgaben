@@ -1,4 +1,3 @@
-import StringAufgaben._
 import FractionObject._
 
 object compareTo {
