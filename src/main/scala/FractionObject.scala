@@ -1,5 +1,3 @@
-import StringAufgaben._
-
 import scala.annotation.tailrec
 
 object FractionObject {
@@ -54,9 +52,9 @@ object FractionObject {
    * @param x given Fraction
    * @return Outputs Fraction as String
    */
-  def toString(x:Fraction):String = x.denominator match{
-    case One => toString2(x.enumerator)
-    case _ => toString2(x.enumerator) + divider + toString2(x.denominator)
+  def toString2(x:Fraction):String = x.denominator match{
+    case One => StringAufgaben.toString2(x.enumerator)
+    case _ => StringAufgaben.toString2(x.enumerator) + divider + StringAufgaben.toString2(x.denominator)
   }
 
   /**
@@ -78,7 +76,7 @@ object FractionObject {
    * @param y second Fraction
    * @return Outputs true if they are the same, otherwise false
    */
-  def sameValue(x:Fraction,y:Fraction):Boolean = toRational(x)==toRational(y)
+  def sameValue(x:Fraction,y:Fraction):Boolean = x.enumerator*y.denominator==y.enumerator*x.denominator //toRational(x)==toRational(y)
 
   /**
    * Checks if first Fraction is smaller than 2nd

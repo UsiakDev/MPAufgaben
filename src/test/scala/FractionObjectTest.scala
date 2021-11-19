@@ -28,8 +28,8 @@ class FractionObjectTest extends FunSuite{
   }
 
   test("toString Test"){
-    assert(FractionObject.toString(Fraction(3,1))=="3")
-    assert(FractionObject.toString(Fraction(3,2))=="3/2")
+    assert(FractionObject.toString2(Fraction(3,1))=="3")
+    assert(FractionObject.toString2(Fraction(3,2))=="3/2")
   }
 
   test("toRational Test"){

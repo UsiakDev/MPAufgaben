@@ -4,12 +4,12 @@ import FractionObject._
 
 class UnitsAndConversionTests extends FunSuite{
   test("toString Tests"){
-    assert(toString2(BaseUnit("Meter"))=="Meter")
-    assert(toString2(DerivedUnit("Kilometer",BaseUnit("Meter"),ProportionalConversion(Fraction(1000,1))))=="Kilometer")
-    assert(toString2(ProportionalConversion(Fraction(1000,1)))=="x * 1000")
-    assert(toString2(LinearConversion(Fraction(40,1),Fraction(5,1)))=="40 * x + 5")
-    assert(toString2(Quantity(Fraction(400,1),BaseUnit("Meter")))=="400 Meter")
-    assert(toString2(Quantity(Fraction(400,2),BaseUnit("Meter")))=="400/2 Meter")
+    assert(UnitsAndConversion.toString2(BaseUnit("Meter"))=="Meter")
+    assert(UnitsAndConversion.toString2(DerivedUnit("Kilometer",BaseUnit("Meter"),ProportionalConversion(Fraction(1000,1))))=="Kilometer")
+    assert(UnitsAndConversion.toString2(ProportionalConversion(Fraction(1000,1)))=="x * 1000")
+    assert(UnitsAndConversion.toString2(LinearConversion(Fraction(40,1),Fraction(5,1)))=="40 * x + 5")
+    assert(UnitsAndConversion.toString2(Quantity(Fraction(400,1),BaseUnit("Meter")))=="400 Meter")
+    assert(UnitsAndConversion.toString2(Quantity(Fraction(400,2),BaseUnit("Meter")))=="400/2 Meter")
   }
 
   test("convertAmount Test"){
@@ -32,7 +32,7 @@ class UnitsAndConversionTests extends FunSuite{
     //Inverse Conversion Meter -> Kilometer is *1000 and therefore Kilometer -> Meter is 1/1000
     assert(getInverseConversion(ProportionalConversion(Fraction(1000,1)))==ProportionalConversion(Fraction(1,1000)))
     //Linear Conversion Inverse : 3*x+2 <-> 1/3*x-2
-    assert(getInverseConversion(LinearConversion(Fraction(3,1),Fraction(2,1)))==LinearConversion(Fraction(1,3),Fraction(-2,1)))
+    assert(getInverseConversion(LinearConversion(Fraction(3,1),Fraction(2,1)))==LinearConversion(Fraction(1,3),Fraction(-2,3)))
   }
 
   test("convertFromBase Test"){

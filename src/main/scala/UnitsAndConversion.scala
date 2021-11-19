@@ -55,7 +55,7 @@ object UnitsAndConversion {
    * @return return String of Quantity
    */
   def toString2(x:Quantity):String = {
-    (if(x.amount.denominator!=1) FractionObject.toString(x.amount) else x.amount.enumerator) + " " + toString2(x.unit)
+    (if(x.amount.denominator!=1) FractionObject.toString2(x.amount) else x.amount.enumerator) + " " + toString2(x.unit)
   }
 
   /**
@@ -64,8 +64,8 @@ object UnitsAndConversion {
    * @return String of ConversionMethod : Shows how it's calculating
    */
   def toString2(x:ConversionMethod):String = x match{
-    case x:ProportionalConversion => "x * " + FractionObject.toString(x.factor)
-    case x:LinearConversion => FractionObject.toString(x.m) + " * x + " + FractionObject.toString(x.b)
+    case x:ProportionalConversion => "x * " + FractionObject.toString2(x.factor)
+    case x:LinearConversion => FractionObject.toString2(x.m) + " * x + " + FractionObject.toString2(x.b)
   }
 
   /**
@@ -113,7 +113,7 @@ object UnitsAndConversion {
    */
   def getInverseConversion(convm:ConversionMethod):ConversionMethod = convm match {
     case f:ProportionalConversion => ProportionalConversion(/(Fraction(1,1),f.factor))
-    case l:LinearConversion => LinearConversion(/(Fraction(1,1),l.m),*(Fraction(-1,1),l.b))
+    case l:LinearConversion => LinearConversion(/(Fraction(1,1),l.m),*(Fraction(-1,1),/(l.b,l.m)))
   }
 
   /**
@@ -122,15 +122,8 @@ object UnitsAndConversion {
    * @param into transfer to this TargetUnit
    * @return transfered Quantity
    */
-  def convert(q:Quantity,into:AbstractUnit):Quantity = q.unit match{
-    case _:BaseUnit => convertFromBase(q,into)
-    case d:DerivedUnit =>
-      into match{
-        case b:BaseUnit =>
-          if(d.baseUnit.baseUnit==b.baseUnit) convertToBase(q)
-          else throw new Exception("Quantity and targetUnit dont have same BaseUnit!")
-        case _:DerivedUnit => convertFromBase(convertToBase(q),into)
-      }
+  def convert(q:Quantity,into:AbstractUnit):Quantity = {
+    convertFromBase(convertToBase(q),into)
   }
 
 }
