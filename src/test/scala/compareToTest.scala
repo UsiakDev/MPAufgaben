@@ -26,6 +26,7 @@ class compareToTest extends FunSuite{
     //String Type
     assert(compareTo("abc","abcd"))
     assert(compareTo("ABC","abc"))
+    assert(compareTo("","abc"))
     assert(!compareTo("ABC","ABC"))
     intercept[Exception]{compareTo("abc",2)}
 
@@ -33,6 +34,11 @@ class compareToTest extends FunSuite{
     assert(compareTo(Fraction(1,2),Fraction(2,3)))
     assert(!compareTo(Fraction(1,2),Fraction(1,3)))
     intercept[Exception]{compareTo(Fraction(3,5),true)}
+
+    //Char Type
+    assert(compareTo('a','b'))
+    assert(compareTo('A','b'))
+    assert(!compareTo('a','B'))
 
     //undefined
     intercept[Exception]{compareTo(0.2f,0.4f)}

@@ -1,4 +1,5 @@
 import FractionObject._
+import StringAufgaben._
 
 object compareTo {
 
@@ -10,30 +11,14 @@ object compareTo {
    * @param y 2nd input
    * @return Outputs Boolean depending if first input is smaller than 2nd
    */
-  def compareTo(x:Any,y:Any):Boolean = x match{
-    case b1:Boolean => y match{
-      case b2:Boolean => !b1 && b1!=b2
-      case _ => throw compareDifferentType
-    }
-    case i1:Int => y match{
-      case i2:Int => i1<i2
-      case _ => throw compareDifferentType
-    }
-    case bigI1:BigInt => y match{
-      case bigI2:BigInt => bigI1<bigI2
-      case _ => throw compareDifferentType
-    }
+  def compareTo(x:Any,y:Any):Boolean = (x,y) match{
+    case (x:Boolean,y:Boolean) => !x && y
+    case (x:Char,y:Char) => toUnicode(x)<toUnicode(y)
+    case (x:Int,y:Int) => x<y
+    case (x:BigInt,y:BigInt) => x<y
+    case (x:String,y:String) => StringAufgaben.less(x,y)
+    case (x:Fraction,y:Fraction) => FractionObject.less(x,y)
 
-    case s1:String => y match{
-      case s2:String => StringAufgaben.less(s1,s2)
-      case _ => throw compareDifferentType
-    }
-
-    case f1:Fraction => y match{
-      case f2:Fraction => FractionObject.less(f1,f2)
-      case _ => throw compareDifferentType
-    }
-
-    case _ => throw new Exception("Data type not found")
+    case _ => throw new Exception("Data type not found or not equal")
   }
 }
