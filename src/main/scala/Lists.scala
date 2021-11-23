@@ -8,6 +8,8 @@ object Lists {
 
   }
 
+  val intListOnly:Exception = new Exception("List is not made out of integers only")
+
   /**
    * Abstract Class List
    *  nonEmptyList contains something and another list
@@ -50,7 +52,7 @@ object Lists {
       case content:Int =>
         if(isPrim(content)) nonEmptyList(content, getPrimes(l.furtherList))
         else getPrimes(l.furtherList)
-      case _ => throw new Exception("List is not made out of integers only")
+      case _ => throw intListOnly
     }
     case _:emptyList => emptyList()
   }
@@ -81,11 +83,50 @@ object Lists {
     case _:emptyList => y
   }
 
-  def flatten(x:List):List = x match{
-    case l:nonEmptyList => l.content match{
-      case list:nonEmptyList => ??? //nonEmptyList(list.content,append(flatten(list.furtherList),flatten(l.furtherList)))
-      case content:Any => ??? //nonEmptyList(content,flatten(l.furtherList))
+  /**
+   * Flattens a multi dimensional List down to only 1 Dimension
+   * @param l given List
+   * @return Outputs flattened List
+   */
+  def flatten(l:List):List = flattenHelper(l)
+
+  //Helper function of flatten
+  @tailrec private def flattenHelper(x:List,save:List=emptyList()):List = x match{
+    case mainList:nonEmptyList => mainList.content match{
+      case list:nonEmptyList => flattenHelper(append(append(save,list),mainList.furtherList))
+      case content:Any => flattenHelper(mainList.furtherList,add(save,content)) //nonEmptyList(content,flatten(l.furtherList))
     }
-    case _:emptyList => emptyList()
+    case _:emptyList => save
   }
+
+  /**
+   * Adds some content at the end of a List
+   * @param x given List
+   * @param content given Content
+   * @return Outputs a List with added content
+   */
+  def add(x:List,content:Any):List = x match{
+    case l:nonEmptyList => nonEmptyList(l.content,add(l.furtherList,content))
+    case _:emptyList => nonEmptyList(content,emptyList())
+  }
+
+  /**
+   * Calculates last number of a integer sequence list according to elsnerSpecial Game
+   * @param l given List
+   * @return Outputs calculated last number
+   */
+  def elsnerSpecial(l:List):Int = elsnerSpecialHelper(l)
+
+  //Helper function of elsnerSpecial
+  @tailrec private def elsnerSpecialHelper(list:List,counter:Int=0):Int = list match{
+    case l:nonEmptyList => l.content match {
+      case n:Int =>
+        if(lengthOfList(list)==1) n
+        else if(counter%2==0) elsnerSpecialHelper(add(l.furtherList,l.content),counter+1)
+        else elsnerSpecialHelper(l.furtherList,counter+1)
+      case _ => throw intListOnly
+    }
+    case _:emptyList => throw new Exception("Cant compute ElsnerSpecial on emptyList")
+  }
+
 }

@@ -3,11 +3,14 @@ import Lists._
 
 class ListsTest extends FunSuite{
   val randomList:List = nonEmptyList(2,nonEmptyList("Hallo",nonEmptyList(true,emptyList())))
+  val randomListWithAdd:List =
+    nonEmptyList(2,nonEmptyList("Hallo",nonEmptyList(true,nonEmptyList("Add",emptyList()))))
   val primList:List
   = nonEmptyList(1,nonEmptyList(2,nonEmptyList(3,nonEmptyList(5,nonEmptyList(8,emptyList())))))
   val notFlattendList:List
   = nonEmptyList(nonEmptyList(2,nonEmptyList(true,emptyList())),nonEmptyList("Hallo",emptyList()))
   val flattendList:List = nonEmptyList(2,nonEmptyList(true,nonEmptyList("Hallo",emptyList())))
+  val intListTo6:List = nonEmptyList(1,nonEmptyList(2,nonEmptyList(3,nonEmptyList(4,nonEmptyList(5,nonEmptyList(6,emptyList()))))))
 
   test("Length Test"){
     assert(lengthOfList(randomList)==3)
@@ -41,11 +44,11 @@ class ListsTest extends FunSuite{
   }
 
   test("flatten Test"){
-    //assert(flatten(randomList)==randomList)
-    //assert(flatten(notFlattendList)==flattendList)
+    assert(flatten(randomList)==randomList)
+    assert(flatten(notFlattendList)==flattendList)
   }
 
-  /*
+
   test("flattenTest") {
 
     assert(flatten(emptyList()) == emptyList())
@@ -84,5 +87,21 @@ class ListsTest extends FunSuite{
           nonEmptyList(4, emptyList())),
         nonEmptyList(1, emptyList()))) == nonEmptyList(1, nonEmptyList(4, nonEmptyList(1, emptyList()))))
   }
-   */
+
+
+  test("add Test"){
+    assert(add(randomList,"Add")==randomListWithAdd)
+    assert(add(emptyList(),true)==nonEmptyList(true,emptyList()))
+    assert(add(emptyList(),emptyList())==nonEmptyList(emptyList(),emptyList())) // Is das ok?
+  }
+
+  test("elsnerSpecialTest"){
+    assert(elsnerSpecial(intListTo6)==5)
+    assert(elsnerSpecial(nonEmptyList(1,emptyList()))==1)
+    assert(elsnerSpecial(nonEmptyList(1,nonEmptyList(2,nonEmptyList(3,emptyList()))))==3)
+
+    //Wie nochmal nach exakter Exception prüfen?
+    intercept[Exception]{elsnerSpecial(randomList)}
+    intercept[Exception]{elsnerSpecial(emptyList())}
+  }
 }
