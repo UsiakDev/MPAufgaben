@@ -1,11 +1,17 @@
 import MPAufgaben._
+import compareTo._
 
 import scala.annotation.tailrec
+import scala.util.Random
 
 object Lists {
 
   def main(args: Array[String]): Unit = {
-
+    println(toString2(createRandomList(0)))
+    println(toString2(createRandomList(1)))
+    println(toString2(createRandomList(2)))
+    println(toString2(createRandomList(16)))
+    //println(toString2(bubbleSort(createRandomList(20))))
   }
 
   val intListOnly:Exception = new Exception("List is not made out of integers only")
@@ -94,7 +100,7 @@ object Lists {
   @tailrec private def flattenHelper(x:List,save:List=emptyList()):List = x match{
     case mainList:nonEmptyList => mainList.content match{
       case list:nonEmptyList => flattenHelper(append(append(save,list),mainList.furtherList))
-      case content:Any => flattenHelper(mainList.furtherList,add(save,content)) //nonEmptyList(content,flatten(l.furtherList))
+      case content:Any => flattenHelper(mainList.furtherList,add(save,content))
     }
     case _:emptyList => save
   }
@@ -129,4 +135,41 @@ object Lists {
     case _:emptyList => throw new Exception("Cant compute ElsnerSpecial on emptyList")
   }
 
+  /**
+   * Creates a random List with given length out of integer only. Ints have values from 0 to 100
+   * @param n given length
+   * @return Outputs randomized List
+   */
+  def createRandomList(n:Int):List = {
+    if(n==0) emptyList()
+    else {
+      var list:List = emptyList()
+      for(_ <-1 to n){
+        list = add(list,Random.nextInt(100))
+      }
+      list
+    }
+  }
+
+  /*
+  def bubbleSort(list:List):List = list match {
+    case _: nonEmptyList =>
+      var liste = list
+      for (_ <- 1 to lengthOfList(list)) {
+        liste = bubbleSorting(liste)
+      }
+      liste
+    case _:emptyList => emptyList()
+  }
+
+  @tailrec private def bubbleSorting(list:List,save:List=emptyList()):List = list match {
+    case list:nonEmptyList => list.furtherList match {
+      case n:nonEmptyList =>
+        if(compareTo(list.content,n.content)) bubbleSorting(n,add(save,list.content))
+        else bubbleSorting(nonEmptyList(list.content,n.furtherList),add(save,n.content))
+      case _:emptyList => save
+    }
+    case _:emptyList => save
+  }
+   */
 }
