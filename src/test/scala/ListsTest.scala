@@ -10,7 +10,8 @@ class ListsTest extends FunSuite{
   val notFlattendList:List
   = nonEmptyList(nonEmptyList(2,nonEmptyList(true,emptyList())),nonEmptyList("Hallo",emptyList()))
   val flattendList:List = nonEmptyList(2,nonEmptyList(true,nonEmptyList("Hallo",emptyList())))
-  val intListTo6:List = nonEmptyList(1,nonEmptyList(2,nonEmptyList(3,nonEmptyList(4,nonEmptyList(5,nonEmptyList(6,emptyList()))))))
+  val intListTo6:List
+  = nonEmptyList(1,nonEmptyList(2,nonEmptyList(3,nonEmptyList(4,nonEmptyList(5,nonEmptyList(6,emptyList()))))))
 
   test("Length Test"){
     assert(lengthOfList(randomList)==3)

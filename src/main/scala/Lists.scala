@@ -111,9 +111,8 @@ object Lists {
    * @param content given Content
    * @return Outputs a List with added content
    */
-  def add(x:List,content:Any):List = x match{
-    case l:nonEmptyList => nonEmptyList(l.content,add(l.furtherList,content))
-    case _:emptyList => nonEmptyList(content,emptyList())
+  def add(x:List,content:Any):List = {
+    append(x,nonEmptyList(content,emptyList()))
   }
 
   /**
@@ -145,7 +144,7 @@ object Lists {
     else {
       var list:List = emptyList()
       for(_ <-1 to n){
-        list = add(list,Random.nextInt(100))
+        list = nonEmptyList(Random.nextInt(100),list)
       }
       list
     }
